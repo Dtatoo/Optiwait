@@ -1,0 +1,53 @@
+var _user$project$View$clinicsTable = function (model) {
+	return A2(
+		_elm_lang$html$Html_App$map,
+		_user$project$Messages$ClinicsListMsg,
+		_user$project$ClinicsList_View$view(model));
+};
+var _user$project$View$homePageView = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$h1,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Optiwait')
+					])),
+				_user$project$View$clinicsTable(model.clinicsTable)
+			]));
+};
+var _user$project$View$page = function (model) {
+	var _p0 = model.route;
+	switch (_p0.ctor) {
+		case 'HomeRoute':
+			return _user$project$View$homePageView(model);
+		case 'LoginRoute':
+			return A2(
+				_elm_lang$html$Html_App$map,
+				_user$project$Messages$LoginMsg,
+				_user$project$Login_Main$view(model.loginPage));
+		case 'SignupRoute':
+			return A2(
+				_elm_lang$html$Html_App$map,
+				_user$project$Messages$SignupMsg,
+				_user$project$GooglePlaces_Main$view(model.signupPage));
+		default:
+			return _elm_lang$html$Html$text('ERROR PAGE');
+	}
+};
+var _user$project$View$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$View$page(model)
+			]));
+};

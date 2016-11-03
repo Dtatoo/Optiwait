@@ -1,0 +1,36 @@
+var _user$project$Routing$NotFoundRoute = {ctor: 'NotFoundRoute'};
+var _user$project$Routing$routeFromResult = function (result) {
+	var _p0 = result;
+	if (_p0.ctor === 'Ok') {
+		return _p0._0;
+	} else {
+		return _user$project$Routing$NotFoundRoute;
+	}
+};
+var _user$project$Routing$SignupRoute = {ctor: 'SignupRoute'};
+var _user$project$Routing$LoginRoute = {ctor: 'LoginRoute'};
+var _user$project$Routing$HomeRoute = {ctor: 'HomeRoute'};
+var _user$project$Routing$matchers = _evancz$url_parser$UrlParser$oneOf(
+	_elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_evancz$url_parser$UrlParser$format,
+			_user$project$Routing$HomeRoute,
+			_evancz$url_parser$UrlParser$s('')),
+			A2(
+			_evancz$url_parser$UrlParser$format,
+			_user$project$Routing$LoginRoute,
+			_evancz$url_parser$UrlParser$s('login')),
+			A2(
+			_evancz$url_parser$UrlParser$format,
+			_user$project$Routing$SignupRoute,
+			_evancz$url_parser$UrlParser$s('signup'))
+		]));
+var _user$project$Routing$hashParser = function (location) {
+	return A3(
+		_evancz$url_parser$UrlParser$parse,
+		_elm_lang$core$Basics$identity,
+		_user$project$Routing$matchers,
+		A2(_elm_lang$core$String$dropLeft, 1, location.hash));
+};
+var _user$project$Routing$parser = _elm_lang$navigation$Navigation$makeParser(_user$project$Routing$hashParser);

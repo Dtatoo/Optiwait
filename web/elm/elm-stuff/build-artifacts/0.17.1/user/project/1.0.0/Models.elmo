@@ -1,0 +1,8 @@
+var _user$project$Models$init = F2(
+	function (route, clinicsTable) {
+		return {clinicsTable: clinicsTable, loginPage: _user$project$Login_Main$model, signupPage: _user$project$GooglePlaces_Main$init, route: route};
+	});
+var _user$project$Models$AppModel = F4(
+	function (a, b, c, d) {
+		return {clinicsTable: a, loginPage: b, signupPage: c, route: d};
+	});

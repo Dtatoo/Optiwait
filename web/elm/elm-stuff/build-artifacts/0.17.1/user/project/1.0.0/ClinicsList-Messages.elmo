@@ -1,0 +1,6 @@
+var _user$project$ClinicsList_Messages$SetTableState = function (a) {
+	return {ctor: 'SetTableState', _0: a};
+};
+var _user$project$ClinicsList_Messages$SetQuery = function (a) {
+	return {ctor: 'SetQuery', _0: a};
+};

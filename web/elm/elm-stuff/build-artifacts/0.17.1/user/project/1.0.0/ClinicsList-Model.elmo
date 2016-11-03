@@ -1,0 +1,19 @@
+var _user$project$ClinicsList_Model$init = function (clinics) {
+	return {
+		clinics: clinics,
+		tableState: _evancz$elm_sortable_table$Table$initialSort('Name'),
+		query: ''
+	};
+};
+var _user$project$ClinicsList_Model$Time = F2(
+	function (a, b) {
+		return {hour: a, min: b};
+	});
+var _user$project$ClinicsList_Model$ClinicInfo = F3(
+	function (a, b, c) {
+		return {name: a, location: b, hours: c};
+	});
+var _user$project$ClinicsList_Model$ClinicsTable = F3(
+	function (a, b, c) {
+		return {clinics: a, tableState: b, query: c};
+	});
