@@ -24,3 +24,5 @@ erl_crash.dump
 /config/prod.secret.exs
 /oldApiServer
 .DS_Store
+/web/elm/elm-stuff
+web/static/js/main.js

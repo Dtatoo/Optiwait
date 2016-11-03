@@ -42,5 +42,5 @@ view model =
         [ h1 [] [ text "LoginPage" ]
         , input [ type' "text", placeholder "email", onInput Email ] []
         , input [ type' "password", placeholder "password", onInput Password ] []
-        , input [ type' "button" ] [ text "Login" ]
+        , button [] [ text "Login" ]
         ]

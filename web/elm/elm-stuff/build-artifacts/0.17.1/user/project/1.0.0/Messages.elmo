@@ -1,9 +1,0 @@
-var _user$project$Messages$SignupMsg = function (a) {
-	return {ctor: 'SignupMsg', _0: a};
-};
-var _user$project$Messages$LoginMsg = function (a) {
-	return {ctor: 'LoginMsg', _0: a};
-};
-var _user$project$Messages$ClinicsListMsg = function (a) {
-	return {ctor: 'ClinicsListMsg', _0: a};
-};
