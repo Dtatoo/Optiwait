@@ -1,6 +1,7 @@
 module View exposing (view)
 
 import Html exposing (..)
+import Html.Attributes exposing (..)
 import Html.App
 import Models exposing (AppModel)
 import Messages exposing (Msg(..))
@@ -41,6 +42,6 @@ clinicsTable model =
 homePageView : AppModel -> Html Msg
 homePageView model =
     div []
-        [ h1 [] [ text "Optiwait" ]
+        [ img [ src "/images/optiwait_dark.png", alt "Optiwait logo" ] []
         , clinicsTable model.clinicsTable
         ]

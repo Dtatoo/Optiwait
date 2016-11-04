@@ -19,8 +19,13 @@ defmodule Optiwait.Router do
     get "/", PageController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", Optiwait do
-  #   pipe_through :api
-  # end
+  scope "/api/v1", Optiwait do
+    pipe_through :api
+
+    resources "/users", UserController, except: [:new, :edit]
+    resources "/clinics", ClinicController, except: [:new, :edit]
+    resources "/hours", HourController, except: [:new, :edit]
+    resources "/wait_times", WaitTimeController, except: [:new, :edit]
+    resources "/locations", LocationController, except: [:new, :edit]
+  end
 end
