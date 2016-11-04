@@ -11,6 +11,8 @@ defmodule Optiwait.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug Guardian.Plug.VerifyHeader, realm: "Bearer"
+    plug Guardian.Plug.LoadResource
   end
 
   scope "/", Optiwait do
@@ -27,5 +29,6 @@ defmodule Optiwait.Router do
     resources "/hours", HourController, except: [:new, :edit]
     resources "/wait_times", WaitTimeController, except: [:new, :edit]
     resources "/locations", LocationController, except: [:new, :edit]
+    post "/login", LoginController, :login
   end
 end
