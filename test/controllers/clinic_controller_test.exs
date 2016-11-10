@@ -11,15 +11,19 @@ defmodule Optiwait.ClinicControllerTest do
   end
 
   test "lists all entries on index", %{conn: conn} do
-    conn =
+    token =
       conn
       |> post("/api/v1/users", user: @valid_login)
       |> post("/api/v1/login", @valid_login)
-      |> recycle
-      IO.puts conn
-      #|> get("api/v1/clinics")
+      |> get_resp_header("authorization")
+      |> List.first
 
-    assert json_response(conn, 200)["data"] == []
+    logged_in_conn =
+      build_conn
+      |> put_req_header("authorization", token)
+      |> get("/api/v1/clinics")
+
+    assert json_response(logged_in_conn, 200)["data"] == []
   end
 
   test "shows chosen resource", %{conn: conn} do
