@@ -8,19 +8,19 @@ defmodule Optiwait.ClinicControllerTest do
 
   setup %{conn: conn} do
     {:ok, conn: put_req_header(conn, "accept", "application/json")}
-  end
-
-  test "lists all entries on index", %{conn: conn} do
     token =
       conn
       |> post("/api/v1/users", user: @valid_login)
       |> post("/api/v1/login", @valid_login)
       |> get_resp_header("authorization")
       |> List.first
+    {:ok, conn: put_req_header(conn, "authorization", token)}
+  end
+
+  test "lists all entries on index", %{conn: conn} do
 
     logged_in_conn =
-      build_conn
-      |> put_req_header("authorization", token)
+      conn
       |> get("/api/v1/clinics")
 
     assert json_response(logged_in_conn, 200)["data"] == []
