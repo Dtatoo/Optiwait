@@ -9,7 +9,10 @@ defmodule Optiwait.ClinicController do
   end
 
   def create(conn, %{"clinic" => clinic_params}) do
-    changeset = Clinic.changeset(%Clinic{}, clinic_params)
+    current_user = Guardian.Plug.current_resource conn
+    changeset =
+      %Clinic{user_id: current_user.id}
+      |> Clinic.changeset(clinic_params)
 
     case Repo.insert(changeset) do
       {:ok, clinic} ->
@@ -30,7 +33,9 @@ defmodule Optiwait.ClinicController do
   end
 
   def update(conn, %{"id" => id, "clinic" => clinic_params}) do
-    clinic = Repo.get!(Clinic, id)
+    clinic =
+      Repo.get!(Clinic, id)
+      |> Repo.preload(:user)
     changeset = Clinic.changeset(clinic, clinic_params)
 
     case Repo.update(changeset) do

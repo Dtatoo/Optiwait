@@ -26,7 +26,7 @@ config :guardian, Guardian,
   allowed_algos: ["HS512", "HS384"],
   issuer: "MyApp",
   ttl: { 30, :days },
-  serializer: OptiwaitApi.GuardianSerializer,
+  serializer: Optiwait.GuardianSerializer,
   secret_key: "mysecret"
 
 # Import environment specific config. This must remain at the bottom

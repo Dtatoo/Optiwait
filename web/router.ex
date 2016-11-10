@@ -11,8 +11,12 @@ defmodule Optiwait.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+  end
+
+  pipeline :api_authenticated do
     plug Guardian.Plug.VerifyHeader, realm: "Bearer"
     plug Guardian.Plug.LoadResource
+    plug Guardian.Plug.EnsureAuthenticated
   end
 
   scope "/", Optiwait do
@@ -22,13 +26,14 @@ defmodule Optiwait.Router do
   end
 
   scope "/api/v1", Optiwait do
-    pipe_through :api
-
+    pipe_through [:api]
     resources "/users", UserController, except: [:new, :edit]
+    post "/login", LoginController, :login
+
+    pipe_through [:api_authenticated]
     resources "/clinics", ClinicController, except: [:new, :edit]
     resources "/hours", HourController, except: [:new, :edit]
     resources "/wait_times", WaitTimeController, except: [:new, :edit]
     resources "/locations", LocationController, except: [:new, :edit]
-    post "/login", LoginController, :login
   end
 end

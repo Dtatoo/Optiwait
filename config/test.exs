@@ -14,7 +14,7 @@ config :optiwait, Optiwait.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",
-  database: "optiwait_dev",
+  database: "optiwait_dev_test",
   hostname: "192.168.99.100",
   port: "32771",
   pool: Ecto.Adapters.SQL.Sandbox

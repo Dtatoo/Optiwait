@@ -6,6 +6,7 @@ defmodule Optiwait.User do
     field :password, :string, virtual: true
     field :hashed_password, :string
     field :is_admin, :boolean, default: false
+    has_many :clinics, Optiwait.Clinic
 
     timestamps()
   end

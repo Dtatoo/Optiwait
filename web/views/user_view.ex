@@ -12,7 +12,6 @@ defmodule Optiwait.UserView do
   def render("user.json", %{user: user}) do
     %{id: user.id,
       email: user.email,
-      hashed_password: user.hashed_password,
       is_admin: user.is_admin}
   end
 end

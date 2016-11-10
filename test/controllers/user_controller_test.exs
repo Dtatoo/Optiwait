@@ -3,6 +3,7 @@ defmodule Optiwait.UserControllerTest do
 
   alias Optiwait.User
   @valid_attrs %{email: "myemail@email.com", password: "mypassword", is_admin: true}
+  @valid_search_attrs %{email: "myemail@email.com", is_admin: true}
   @invalid_password %{email: "myemail@email.com", password: "shor", is_admin: true}
   @invalid_email %{email: "myemailemail.com", password: "passwordtest", is_admin: true}
   @invalid_attrs %{}
@@ -21,7 +22,6 @@ defmodule Optiwait.UserControllerTest do
     conn = get conn, user_path(conn, :show, user)
     assert json_response(conn, 200)["data"] == %{"id" => user.id,
       "email" => user.email,
-      "hashed_password" => user.hashed_password,
       "is_admin" => user.is_admin}
   end
 
@@ -34,7 +34,7 @@ defmodule Optiwait.UserControllerTest do
   test "creates and renders resource when data is valid", %{conn: conn} do
     conn = post conn, user_path(conn, :create), user: @valid_attrs
     assert json_response(conn, 201)["data"]["id"]
-    assert Repo.get_by(User, @valid_attrs)
+    assert Repo.get_by(User, @valid_search_attrs)
   end
 
   test "does not create resource and renders errors when data is invalid", %{conn: conn} do
@@ -46,7 +46,7 @@ defmodule Optiwait.UserControllerTest do
     user = Repo.insert! %User{}
     conn = put conn, user_path(conn, :update, user), user: @valid_attrs
     assert json_response(conn, 200)["data"]["id"]
-    assert Repo.get_by(User, @valid_attrs)
+    assert Repo.get_by(User, @valid_search_attrs)
   end
 
   test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do

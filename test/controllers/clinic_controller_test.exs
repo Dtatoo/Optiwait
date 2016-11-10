@@ -1,8 +1,9 @@
 defmodule Optiwait.ClinicControllerTest do
-  use Optiwait.ConnCase
+  use Optiwait.ConnCase, async: false
 
   alias Optiwait.Clinic
   @valid_attrs %{about: "some content", name: "some content"}
+  @valid_login %{email: "myemail@email.com", password: "mypassword"}
   @invalid_attrs %{}
 
   setup %{conn: conn} do
@@ -10,7 +11,14 @@ defmodule Optiwait.ClinicControllerTest do
   end
 
   test "lists all entries on index", %{conn: conn} do
-    conn = get conn, clinic_path(conn, :index)
+    conn =
+      conn
+      |> post("/api/v1/users", user: @valid_login)
+      |> post("/api/v1/login", @valid_login)
+      |> recycle
+      IO.puts conn
+      #|> get("api/v1/clinics")
+
     assert json_response(conn, 200)["data"] == []
   end
 
