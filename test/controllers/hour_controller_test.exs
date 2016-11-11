@@ -2,11 +2,20 @@ defmodule Optiwait.HourControllerTest do
   use Optiwait.ConnCase
 
   alias Optiwait.Hour
-  @valid_attrs %{closed: true, end_hour: %{hour: 14, min: 0, sec: 0}, start_hour: %{hour: 14, min: 0, sec: 0}, weekday: 42}
+  @invalid_attrs_weekday %{closed: true, end_hour: %{hour: 14, min: 0, sec: 0}, start_hour: %{hour: 14, min: 0, sec: 0}, weekday: 42}
+  @valid_attrs %{closed: true, end_hour: %{hour: 14, min: 0, sec: 0}, start_hour: %{hour: 14, min: 0, sec: 0}, weekday: 2}
   @invalid_attrs %{}
+  @valid_login %{email: "myemail@email.com", password: "mypassword"}
 
   setup %{conn: conn} do
     {:ok, conn: put_req_header(conn, "accept", "application/json")}
+    token =
+      conn
+      |> post("/api/v1/users", user: @valid_login)
+      |> post("/api/v1/login", @valid_login)
+      |> get_resp_header("authorization")
+      |> List.first
+    {:ok, conn: put_req_header(conn, "authorization", token)}
   end
 
   test "lists all entries on index", %{conn: conn} do
@@ -47,6 +56,12 @@ defmodule Optiwait.HourControllerTest do
     conn = put conn, hour_path(conn, :update, hour), hour: @valid_attrs
     assert json_response(conn, 200)["data"]["id"]
     assert Repo.get_by(Hour, @valid_attrs)
+  end
+
+  test "does not update when weekday is over 7", %{conn: conn} do
+    hour = Repo.insert! %Hour{}
+    conn = put conn, hour_path(conn, :update, hour), hour: @invalid_attrs_weekday
+    assert json_response(conn, 422)["errors"] != %{}
   end
 
   test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do

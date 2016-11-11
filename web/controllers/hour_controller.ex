@@ -30,7 +30,9 @@ defmodule Optiwait.HourController do
   end
 
   def update(conn, %{"id" => id, "hour" => hour_params}) do
-    hour = Repo.get!(Hour, id)
+    hour =
+      Repo.get!(Hour, id)
+      |> Repo.preload(:clinic)
     changeset = Hour.changeset(hour, hour_params)
 
     case Repo.update(changeset) do

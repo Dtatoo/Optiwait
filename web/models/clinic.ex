@@ -4,6 +4,8 @@ defmodule Optiwait.Clinic do
   schema "clinics" do
     field :name, :string
     field :about, :string
+    has_many :hour, Optiwait.Hour
+    has_one :location, Optiwait.Location
     belongs_to :user, Optiwait.User
 
     timestamps()
@@ -15,7 +17,6 @@ defmodule Optiwait.Clinic do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:name, :about])
-    |> cast_assoc(:user)
     |> validate_required([:name])
   end
 end

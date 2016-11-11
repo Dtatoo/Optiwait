@@ -11,7 +11,8 @@ defmodule Optiwait.ClinicController do
   def create(conn, %{"clinic" => clinic_params}) do
     current_user = Guardian.Plug.current_resource conn
     changeset =
-      %Clinic{user_id: current_user.id}
+      current_user
+      |> build_assoc(:clinics)
       |> Clinic.changeset(clinic_params)
 
     case Repo.insert(changeset) do

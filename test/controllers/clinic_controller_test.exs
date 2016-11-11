@@ -1,5 +1,5 @@
 defmodule Optiwait.ClinicControllerTest do
-  use Optiwait.ConnCase, async: false
+  use Optiwait.ConnCase
 
   alias Optiwait.Clinic
   @valid_attrs %{about: "some content", name: "some content"}
@@ -18,11 +18,9 @@ defmodule Optiwait.ClinicControllerTest do
   end
 
   test "lists all entries on index", %{conn: conn} do
-
     logged_in_conn =
       conn
       |> get("/api/v1/clinics")
-
     assert json_response(logged_in_conn, 200)["data"] == []
   end
 

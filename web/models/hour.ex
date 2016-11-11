@@ -18,6 +18,7 @@ defmodule Optiwait.Hour do
     struct
     |> cast(params, [:weekday, :start_hour, :end_hour, :closed])
     |> cast_assoc(:clinic)
+    |> validate_number(:weekday, less_than: 7)
     |> validate_required([:weekday, :start_hour, :end_hour, :closed])
   end
 end
