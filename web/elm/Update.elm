@@ -4,7 +4,7 @@ import Models exposing (AppModel)
 import Messages exposing (Msg(..))
 import ClinicsList.Update
 import Login.Main as Login
-import Signup.Main as GooglePlaces
+import Signup.Main as Signup
 
 
 update : Msg -> AppModel -> ( AppModel, Cmd Msg )
@@ -29,6 +29,6 @@ update msg model =
         SignupMsg subMsg ->
             let
                 ( newModel, cmd ) =
-                    GooglePlaces.update subMsg model.signupPage
+                    Signup.update subMsg model.signupPage
             in
                 ( { model | signupPage = newModel }, Cmd.map SignupMsg cmd )

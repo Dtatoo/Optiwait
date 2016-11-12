@@ -1,11 +1,11 @@
 module Messages exposing (..)
 
-import ClinicsList.Messages
+import ClinicsList.Messages as ClinicsList
 import Login.Main as Login
-import Signup.Main as GooglePlaces
+import Signup.Main as Signup
 
 
 type Msg
-    = ClinicsListMsg ClinicsList.Messages.Msg
+    = ClinicsListMsg ClinicsList.Msg
     | LoginMsg Login.Msg
-    | SignupMsg GooglePlaces.Msg
+    | SignupMsg Signup.Msg
