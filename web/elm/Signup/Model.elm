@@ -1,4 +1,4 @@
-module GooglePlaces.Model exposing (..)
+module Signup.Model exposing (..)
 
 
 type alias GooglePlaces =

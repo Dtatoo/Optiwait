@@ -4,7 +4,7 @@ import Models exposing (AppModel)
 import Messages exposing (Msg(..))
 import ClinicsList.Update
 import Login.Main as Login
-import GooglePlaces.Main as GooglePlaces
+import Signup.Main as GooglePlaces
 
 
 update : Msg -> AppModel -> ( AppModel, Cmd Msg )

@@ -1,4 +1,4 @@
-module GooglePlaces.PlacesDecoder exposing (..)
+module Signup.PlacesDecoder exposing (..)
 
 import Json.Decode
     exposing
@@ -9,7 +9,7 @@ import Json.Decode
         , decodeString
         )
 import Json.Decode.Pipeline as Json
-import GooglePlaces.Model
+import Signup.Model
     exposing
         ( GooglePlaces
         , ComplexType

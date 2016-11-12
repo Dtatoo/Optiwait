@@ -9,7 +9,7 @@ import Routing exposing (Route(..))
 import ClinicsList.Model exposing (ClinicsTable)
 import ClinicsList.View
 import Login.Main as Login
-import GooglePlaces.Main as Signup
+import Signup.Main as Signup
 
 
 view : AppModel -> Html Msg

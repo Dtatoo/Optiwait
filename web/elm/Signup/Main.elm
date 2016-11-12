@@ -1,11 +1,11 @@
-module GooglePlaces.Main exposing (..)
+module Signup.Main exposing (..)
 
 import Task
 import Http
 import Html exposing (..)
 import Html.Events exposing (onClick)
-import GooglePlaces.Model as PlacesModel
-import GooglePlaces.PlacesDecoder as PlacesDecoder
+import Signup.Model as PlacesModel
+import Signup.PlacesDecoder as PlacesDecoder
 import Navigation
 
 

@@ -2,7 +2,7 @@ module Models exposing (..)
 
 import ClinicsList.Model exposing (ClinicsTable, init)
 import Login.Main as Login
-import GooglePlaces.Main as GooglePlaces
+import Signup.Main as GooglePlaces
 import Routing
 
 

@@ -2,7 +2,7 @@ module Messages exposing (..)
 
 import ClinicsList.Messages
 import Login.Main as Login
-import GooglePlaces.Main as GooglePlaces
+import Signup.Main as GooglePlaces
 
 
 type Msg
