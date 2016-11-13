@@ -4,9 +4,10 @@ defmodule Optiwait.ClinicController do
   alias Optiwait.Clinic
 
   def index(conn, _params) do
-    current_user = Guardian.Plug.current_resource conn
+    current_user_clinic =
+      Guardian.Plug.current_resource(conn)
+      |> assoc(:clinics)
 
-    current_user_clinic = assoc current_user, :clinics
     clinics = Repo.all(current_user_clinic)
     render(conn, "index.json", clinics: clinics)
   end
