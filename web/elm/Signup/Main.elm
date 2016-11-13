@@ -5,6 +5,7 @@ import Http
 import Html exposing (..)
 import Html.Events exposing (onClick)
 import Signup.Model as PlacesModel
+import Signup.View as SignupView
 import Signup.PlacesDecoder as PlacesDecoder
 import Navigation
 
@@ -66,27 +67,11 @@ getPlacesData query =
             Http.get PlacesDecoder.decodeGooglePlaces urlWithQuery
 
 
-view : Model -> Html Msg
-view model =
-    div []
-        [ h1 [] [ text "Google Place Test" ]
-        , button [ onClick Fetch ] [ text "GET PLACE!" ]
-        , descriptionsView model
-        ]
+signupModel : PlacesModel.Signup
+signupModel =
+    PlacesModel.Signup "" ""
 
 
-
---ifError : Model -> String
-
-
-getDescriptions : Model -> List String
-getDescriptions model =
-    (.predictions >> List.map .description) model
-
-
-descriptionsView : Model -> Html Msg
-descriptionsView model =
-    model
-        |> getDescriptions
-        |> List.map (\item -> div [] [ text item ])
-        |> div []
+view : Html Msg
+view =
+    SignupView.view signupModel

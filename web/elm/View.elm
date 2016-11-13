@@ -28,7 +28,7 @@ page model =
             Html.App.map LoginMsg (Login.view model.loginPage)
 
         SignupRoute ->
-            Html.App.map SignupMsg (Signup.view model.signupPage)
+            Html.App.map SignupMsg (Signup.view)
 
         _ ->
             text "ERROR PAGE"

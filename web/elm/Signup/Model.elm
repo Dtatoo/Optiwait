@@ -1,6 +1,12 @@
 module Signup.Model exposing (..)
 
 
+type alias Signup =
+    { email : String
+    , password : String
+    }
+
+
 type alias GooglePlaces =
     { status : String
     , predictions : List ComplexType
