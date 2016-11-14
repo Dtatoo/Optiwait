@@ -2,6 +2,7 @@ defmodule Optiwait.ClinicController do
   use Optiwait.Web, :controller
 
   alias Optiwait.Clinic
+  alias Optiwait.Hour
 
   def index(conn, _params) do
     current_user_clinic =
@@ -12,12 +13,13 @@ defmodule Optiwait.ClinicController do
     render(conn, "index.json", clinics: clinics)
   end
 
-  def create(conn, %{"clinic" => clinic_params}) do
+  def create(conn, %{"clinic" => clinic_params, "hour" => hour_params}) do
     current_user = Guardian.Plug.current_resource conn
+
     changeset =
       current_user
       |> build_assoc(:clinics)
-      |> Clinic.changeset(clinic_params)
+      |> Clinic.changeset(Map.merge(clinic_params, hour_params))
 
     case Repo.insert(changeset) do
       {:ok, clinic} ->
