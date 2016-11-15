@@ -5,9 +5,11 @@ defmodule Optiwait.ClinicController do
   alias Optiwait.Clinic
   alias Optiwait.Hour
 
+# Rethink about use of the following function later
   def combine_changeset(accumulator, []) do
     accumulator
   end
+# this combine_changeset function uses random generator to create a queue
   def combine_changeset(accumulator, [head | tail]) do
     Multi.insert(accumulator, Enum.take_random(?a..?z, 5), Hour.changeset(%Hour{}, head))
     |> combine_changeset(tail)
