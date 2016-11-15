@@ -1,8 +1,17 @@
 defmodule Optiwait.ClinicController do
   use Optiwait.Web, :controller
 
+  alias Ecto.Multi
   alias Optiwait.Clinic
   alias Optiwait.Hour
+
+  def combine_changeset(accumulator, []) do
+    accumulator
+  end
+  def combine_changeset(accumulator, [head | tail]) do
+    Multi.insert(accumulator, Enum.take_random(?a..?z, 5), Hour.changeset(%Hour{}, head))
+    |> combine_changeset(tail)
+  end
 
   def index(conn, _params) do
     current_user_clinic =
@@ -19,7 +28,9 @@ defmodule Optiwait.ClinicController do
     changeset =
       current_user
       |> build_assoc(:clinics)
-      |> Clinic.changeset(Map.merge(clinic_params, hour_params))
+      |> Clinic.changeset(clinic_params)
+
+    Repo.transaction(combine_changeset(Multi.new(), hour_params))
 
     case Repo.insert(changeset) do
       {:ok, clinic} ->

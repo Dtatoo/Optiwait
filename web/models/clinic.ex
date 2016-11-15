@@ -17,7 +17,6 @@ defmodule Optiwait.Clinic do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:name, :about])
-    |> cast_assoc(:hour)
     |> validate_required([:name])
   end
 end
