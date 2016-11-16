@@ -1,9 +1,7 @@
 defmodule Optiwait.ClinicController do
   use Optiwait.Web, :controller
 
-  alias Ecto.Multi
   alias Optiwait.Clinic
-  alias Optiwait.Hour
 
   def index(conn, _params) do
     current_user_clinic =
