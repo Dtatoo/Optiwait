@@ -1,10 +1,12 @@
 defmodule Optiwait.Clinic do
   use Optiwait.Web, :model
 
+  alias Optiwait.Hour
+
   schema "clinics" do
     field :name, :string
     field :about, :string
-    has_many :hour, Optiwait.Hour
+    has_many :hours, Optiwait.Hour
     has_one :location, Optiwait.Location
     belongs_to :user, Optiwait.User
 
@@ -19,4 +21,13 @@ defmodule Optiwait.Clinic do
     |> cast(params, [:name, :about])
     |> validate_required([:name])
   end
+
+  @doc """
+    Validate hours
+    Return [hour] changeset
+  """
+  def validate_hours(hours) do
+    Enum.map hours, fn(item) -> Hour.changeset(%Hour{}, item) end
+  end
+
 end

@@ -5,16 +5,6 @@ defmodule Optiwait.ClinicController do
   alias Optiwait.Clinic
   alias Optiwait.Hour
 
-# Rethink about use of the following function later
-  def combine_changeset(accumulator, []) do
-    accumulator
-  end
-# this combine_changeset function uses random generator to create a queue
-  def combine_changeset(accumulator, [head | tail]) do
-    Multi.insert(accumulator, Enum.take_random(?a..?z, 5), Hour.changeset(%Hour{}, head))
-    |> combine_changeset(tail)
-  end
-
   def index(conn, _params) do
     current_user_clinic =
       Guardian.Plug.current_resource(conn)
@@ -24,15 +14,15 @@ defmodule Optiwait.ClinicController do
     render(conn, "index.json", clinics: clinics)
   end
 
-  def create(conn, %{"clinic" => clinic_params, "hour" => hour_params}) do
+  def create(conn, %{"clinic" => clinic_params, "hours" => hour_params}) do
     current_user = Guardian.Plug.current_resource conn
+    hours = Clinic.validate_hours hour_params
 
     changeset =
       current_user
       |> build_assoc(:clinics)
       |> Clinic.changeset(clinic_params)
-
-    Repo.transaction(combine_changeset(Multi.new(), hour_params))
+      |> Ecto.Changeset.put_assoc(:hours, hours)
 
     case Repo.insert(changeset) do
       {:ok, clinic} ->
