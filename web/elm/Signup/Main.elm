@@ -20,51 +20,14 @@ init =
 
 
 type Msg
-    = Fetch
-    | FetchSuccess Model
-    | FetchFail Http.Error
-    | SignUpPage
+    = SignUpPage
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        Fetch ->
-            ( model, getPlacesData hardCodedQuery )
-
-        FetchSuccess googlePlaces ->
-            ( googlePlaces, Cmd.none )
-
-        FetchFail _ ->
-            ( model, Cmd.none )
-
         SignUpPage ->
             ( model, Navigation.newUrl ("signup") )
-
-
-hardCodedQuery : List ( String, String )
-hardCodedQuery =
-    [ ( "location", "52.133333,-106.683333" )
-      -- Saskatoon
-    , ( "input", "UofS" )
-    , ( "key", "AIzaSyBLh2_PpmwPEybHZp4whBMxsVDiwfvfntg" )
-    ]
-
-
-getPlacesData : List ( String, String ) -> Cmd Msg
-getPlacesData query =
-    let
-        getUrl =
-            "https://maps.googleapis.com/maps/api/place/autocomplete/json"
-
-        urlWithQuery =
-            Http.url getUrl hardCodedQuery
-    in
-        Task.perform
-            FetchFail
-            FetchSuccess
-        <|
-            Http.get PlacesDecoder.decodeGooglePlaces urlWithQuery
 
 
 signupModel : PlacesModel.Signup

@@ -1,7 +1,5 @@
 module Main exposing (..)
 
---import Html.App as App
-
 import ClinicsList.Model exposing (ClinicInfo, ClinicsTable)
 import Models exposing (AppModel)
 import View exposing (view)
@@ -16,16 +14,14 @@ import Routing exposing (Route)
 import TestClinics exposing (clinicInfos)
 
 
-init : Result String Route -> ( AppModel, Cmd Msg )
-init result =
+init : Navigation.Location -> ( AppModel, Cmd Msg )
+init location =
     let
-        currentRoute =
-            Routing.routeFromResult result
-
-        clinicInit =
+        clinicsInit =
+            -- clinicInfos being imported as a test
             ClinicsList.Model.init clinicInfos
     in
-        ( Models.init currentRoute clinicInit, Cmd.none )
+        ( Models.init location clinicsInit, Cmd.none )
 
 
 subscriptions : AppModel -> Sub Msg
@@ -33,21 +29,11 @@ subscriptions model =
     Sub.none
 
 
-urlUpdate : Result String Route -> AppModel -> ( AppModel, Cmd Msg )
-urlUpdate result model =
-    let
-        currentRoute =
-            Routing.routeFromResult result
-    in
-        ( { model | route = currentRoute }, Cmd.none )
-
-
-main : Program Never
+main : Program Never AppModel Msg
 main =
-    Navigation.program Routing.parser
+    Navigation.program UrlChange
         { init = init
         , view = view
         , update = update
-        , urlUpdate = urlUpdate
         , subscriptions = subscriptions
         }

@@ -1,23 +1,32 @@
 module Models exposing (..)
 
+import Navigation
+import UrlParser exposing (parseHash)
 import ClinicsList.Model exposing (ClinicsTable, init)
+import Messages exposing (Msg(..))
 import Login.Main as Login
 import Signup.Main as Signup
-import Routing
+import Routing exposing (Route, route)
 
 
 type alias AppModel =
-    { clinicsTable : ClinicsTable
+    { currentPage : Maybe Route
+    , history : List (Maybe Route)
+    , clinicsTable : ClinicsTable
     , loginPage : Login.Model
     , signupPage : Signup.Model
-    , route : Routing.Route
     }
 
 
-init : Routing.Route -> ClinicsTable -> AppModel
-init route clinicsTable =
-    { clinicsTable = clinicsTable
-    , loginPage = Login.model
-    , signupPage = Signup.init
-    , route = route
-    }
+init : Navigation.Location -> ClinicsTable -> AppModel
+init location clinicsTable =
+    let
+        currentRouter =
+            parseHash route location
+    in
+        { clinicsTable = clinicsTable
+        , loginPage = Login.model
+        , signupPage = Signup.init
+        , history = [ currentRouter ]
+        , currentPage = currentRouter
+        }

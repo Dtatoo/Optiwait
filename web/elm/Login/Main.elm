@@ -1,7 +1,7 @@
 module Login.Main exposing (..)
 
 import Html exposing (..)
-import Html.Attributes exposing (type', placeholder)
+import Html.Attributes exposing (type_, placeholder)
 import Html.Events exposing (onInput)
 import Navigation
 
@@ -40,7 +40,7 @@ view : Model -> Html Msg
 view model =
     div []
         [ h1 [] [ text "LoginPage" ]
-        , input [ type' "text", placeholder "email", onInput Email ] []
-        , input [ type' "password", placeholder "password", onInput Password ] []
+        , input [ type_ "text", placeholder "email", onInput Email ] []
+        , input [ type_ "password", placeholder "password", onInput Password ] []
         , button [] [ text "Login" ]
         ]

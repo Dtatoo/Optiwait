@@ -2,7 +2,7 @@ module View exposing (view)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Html.App
+import Html as App
 import Models exposing (AppModel)
 import Messages exposing (Msg(..))
 import Routing exposing (Route(..))
@@ -20,15 +20,15 @@ view model =
 
 page : AppModel -> Html Msg
 page model =
-    case model.route of
-        HomeRoute ->
+    case model.currentPage of
+        Just HomeRoute ->
             homePageView model
 
-        LoginRoute ->
-            Html.App.map LoginMsg (Login.view model.loginPage)
+        Just LoginRoute ->
+            App.map LoginMsg (Login.view model.loginPage)
 
-        SignupRoute ->
-            Html.App.map SignupMsg (Signup.view)
+        Just SignupRoute ->
+            App.map SignupMsg (Signup.view)
 
         _ ->
             text "ERROR PAGE"
@@ -36,7 +36,7 @@ page model =
 
 clinicsTable : ClinicsTable -> Html Msg
 clinicsTable model =
-    Html.App.map ClinicsListMsg (ClinicsList.View.view model)
+    App.map ClinicsListMsg (ClinicsList.View.view model)
 
 
 homePageView : AppModel -> Html Msg
