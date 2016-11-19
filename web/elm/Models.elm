@@ -25,7 +25,7 @@ init location clinicsTable =
             parseHash route location
     in
         { clinicsTable = clinicsTable
-        , loginPage = Login.model
+        , loginPage = Login.init
         , signupPage = Signup.init
         , history = [ currentRouter ]
         , currentPage = currentRouter
