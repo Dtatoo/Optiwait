@@ -19,6 +19,6 @@ defmodule Optiwait.Location do
     struct
     |> cast(params, [:place_id, :address, :city, :province, :country])
     |> cast_assoc(:clinic)
-    |> validate_required([:place_id, :address, :city, :province, :country])
+    |> validate_required([:address, :city, :province, :country])
   end
 end
