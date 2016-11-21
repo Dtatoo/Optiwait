@@ -13,6 +13,8 @@ defmodule Optiwait.ClinicView do
     %{id: clinic.id,
       name: clinic.name,
       about: clinic.about,
-      user_id: clinic.user_id}
+      user_id: clinic.user_id,
+      location: render_one(clinic.location, Optiwait.LocationView, "location.json"),
+      hours: render_many(clinic.hours, Optiwait.HourView, "hour.json")}
   end
 end
