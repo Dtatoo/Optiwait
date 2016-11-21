@@ -12,15 +12,22 @@ defmodule Optiwait.ClinicController do
     render(conn, "index.json", clinics: clinics)
   end
 
-  def create(conn, %{"clinic" => clinic_params, "hours" => hour_params}) do
+  def create(conn, params) do
+    %{"clinic" => clinic_params,
+    "hours" => hour_params,
+    "location" => location_params
+    } = params
+
     current_user = Guardian.Plug.current_resource conn
     hours = Clinic.validate_hours hour_params
+    location = Clinic.validate_location location_params
 
     changeset =
       current_user
       |> build_assoc(:clinics)
       |> Clinic.changeset(clinic_params)
       |> Ecto.Changeset.put_assoc(:hours, hours)
+      |> Ecto.Changeset.put_assoc(:location, location)
 
     case Repo.insert(changeset) do
       {:ok, clinic} ->
@@ -43,7 +50,7 @@ defmodule Optiwait.ClinicController do
   def update(conn, %{"id" => id, "clinic" => clinic_params}) do
     clinic =
       Repo.get!(Clinic, id)
-      |> Repo.preload(:user)
+      |> Repo.preload(:hours)
     changeset = Clinic.changeset(clinic, clinic_params)
 
     case Repo.update(changeset) do

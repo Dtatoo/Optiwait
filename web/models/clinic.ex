@@ -2,6 +2,7 @@ defmodule Optiwait.Clinic do
   use Optiwait.Web, :model
 
   alias Optiwait.Hour
+  alias Optiwait.Location
 
   schema "clinics" do
     field :name, :string
@@ -28,6 +29,10 @@ defmodule Optiwait.Clinic do
   """
   def validate_hours(hours) do
     Enum.map hours, fn(item) -> Hour.changeset(%Hour{}, item) end
+  end
+
+  def validate_location(location) do
+    Location.changeset(%Location{}, location)
   end
 
 end
