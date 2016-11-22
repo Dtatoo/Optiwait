@@ -2,11 +2,12 @@ module Models exposing (..)
 
 import Navigation
 import UrlParser exposing (parseHash)
+import Routing exposing (Route, route)
 import ClinicsList.Model exposing (ClinicsTable, init)
 import Messages exposing (Msg(..))
 import Login.Main as Login
 import Signup.Main as Signup
-import Routing exposing (Route, route)
+import AddClinic.Main as AddClinic
 
 
 type alias AppModel =
@@ -15,6 +16,7 @@ type alias AppModel =
     , clinicsTable : ClinicsTable
     , loginPage : Login.Model
     , signupPage : Signup.Model
+    , addClinicPage : AddClinic.Model
     }
 
 
@@ -25,8 +27,9 @@ init location clinicsTable =
             parseHash route location
     in
         { clinicsTable = clinicsTable
-        , loginPage = Login.init
-        , signupPage = Signup.init
         , history = [ currentRouter ]
         , currentPage = currentRouter
+        , loginPage = Login.init
+        , signupPage = Signup.init
+        , addClinicPage = AddClinic.init
         }

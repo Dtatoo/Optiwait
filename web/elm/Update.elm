@@ -8,6 +8,7 @@ import Routing exposing (route)
 import ClinicsList.Update
 import Login.Main as Login
 import Signup.Main as Signup
+import AddClinic.Main as AddClinic
 
 
 update : Msg -> AppModel -> ( AppModel, Cmd Msg )
@@ -46,3 +47,10 @@ update msg model =
                     Signup.update subMsg model.signupPage
             in
                 ( { model | signupPage = newModel }, Cmd.map SignupMsg cmd )
+
+        AddClinicMsg subMsg ->
+            let
+                ( newModel, cmd ) =
+                    AddClinic.update subMsg model.addClinicPage
+            in
+                ( { model | addClinicPage = newModel }, Cmd.map AddClinicMsg cmd )

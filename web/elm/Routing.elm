@@ -10,6 +10,7 @@ type Route
     = HomeRoute
     | LoginRoute
     | SignupRoute
+    | AddClinicRoute
     | NotFoundRoute
 
 
@@ -19,4 +20,5 @@ route =
         [ map HomeRoute top
         , map LoginRoute (s "login")
         , map SignupRoute (s "signup")
+        , map AddClinicRoute (s "clinic")
         ]

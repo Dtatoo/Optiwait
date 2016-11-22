@@ -10,6 +10,7 @@ import ClinicsList.Model exposing (ClinicsTable)
 import ClinicsList.View
 import Login.Main as Login
 import Signup.Main as Signup
+import AddClinic.Main as AddClinic
 
 
 view : AppModel -> Html Msg
@@ -29,6 +30,9 @@ page model =
 
         Just SignupRoute ->
             App.map SignupMsg (Signup.view)
+
+        Just AddClinicRoute ->
+            App.map AddClinicMsg (AddClinic.view)
 
         _ ->
             text "ERROR PAGE"
