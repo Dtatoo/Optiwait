@@ -8,7 +8,10 @@ defmodule Optiwait.ClinicController do
       Guardian.Plug.current_resource(conn)
       |> assoc(:clinics)
 
-    clinics = Repo.all(current_user_clinics)
+    clinics =
+      Repo.all(current_user_clinics)
+      |> Repo.preload(:location)
+      |> Repo.preload(:hours)
     render(conn, "index.json", clinics: clinics)
   end
 
