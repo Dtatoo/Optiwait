@@ -5,9 +5,9 @@ import Navigation exposing (newUrl)
 import Models exposing (AppModel)
 import Messages exposing (Msg(..))
 import Routing exposing (route)
-import ClinicsList.Update
+import ClinicsList.Update as ClinicsList
 import Login.Main as Login
-import Signup.Main as Signup
+import Signup.Update as Signup
 import AddClinic.Main as AddClinic
 
 
@@ -27,30 +27,30 @@ update msg model =
 
         ClinicsListMsg subMsg ->
             let
-                ( newList, cmd ) =
-                    ClinicsList.Update.update subMsg model.clinicsTable
+                ( newModel, cmd ) =
+                    ClinicsList.update subMsg model.clinicsList
             in
-                ( { model | clinicsTable = newList }
+                ( { model | clinicsList = newModel }
                 , Cmd.map ClinicsListMsg cmd
                 )
 
         LoginMsg subMsg ->
             let
                 ( newModel, cmd ) =
-                    Login.update subMsg model.loginPage
+                    Login.update subMsg model.login
             in
-                ( { model | loginPage = newModel }, Cmd.map LoginMsg cmd )
+                ( { model | login = newModel }, Cmd.map LoginMsg cmd )
 
         SignupMsg subMsg ->
             let
                 ( newModel, cmd ) =
-                    Signup.update subMsg model.signupPage
+                    Signup.update subMsg model.signup
             in
-                ( { model | signupPage = newModel }, Cmd.map SignupMsg cmd )
+                ( { model | signup = newModel }, Cmd.map SignupMsg cmd )
 
         AddClinicMsg subMsg ->
             let
                 ( newModel, cmd ) =
-                    AddClinic.update subMsg model.addClinicPage
+                    AddClinic.update subMsg model.addClinic
             in
-                ( { model | addClinicPage = newModel }, Cmd.map AddClinicMsg cmd )
+                ( { model | addClinic = newModel }, Cmd.map AddClinicMsg cmd )

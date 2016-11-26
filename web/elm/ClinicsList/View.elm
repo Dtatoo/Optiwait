@@ -5,7 +5,7 @@ import Html.Attributes exposing (placeholder, class, src, alt)
 import Html.Events exposing (onInput)
 import String
 import Table exposing (defaultCustomizations)
-import ClinicsList.Model exposing (ClinicInfo, ClinicsTable)
+import ClinicsList.Models exposing (ClinicInfo, Model)
 import ClinicsList.Messages exposing (Msg(..))
 
 
@@ -40,7 +40,7 @@ tableCssAttrs =
     [ class "c-table" ]
 
 
-view : ClinicsTable -> Html Msg
+view : Model -> Html Msg
 view { clinics, tableState, query } =
     let
         lowerQuery =

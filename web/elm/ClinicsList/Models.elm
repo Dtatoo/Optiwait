@@ -1,6 +1,44 @@
-module TestClinics exposing (..)
+module ClinicsList.Models exposing (..)
 
-import ClinicsList.Model exposing (..)
+import Table
+import ClinicsList.Messages exposing (Msg)
+
+
+type alias Time =
+    { hour : Int
+    , min : Int
+    }
+
+
+type alias ClinicInfo =
+    { name : String
+    , location : String
+    , hours : ( Time, Time )
+    }
+
+
+type alias Model =
+    { clinics : List ClinicInfo
+    , tableState : Table.State
+    , query : String
+    }
+
+
+
+-- Initialize Table View data
+
+
+init : ( Model, Cmd Msg )
+init =
+    { clinics = clinicInfos
+    , tableState = Table.initialSort "Name"
+    , query = ""
+    }
+        ! []
+
+
+
+-- TEST VALUES TODO: remove this once it is wired up with API
 
 
 defaultOpenAndClosingTime : ( Time, Time )

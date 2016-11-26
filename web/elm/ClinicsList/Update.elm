@@ -1,10 +1,10 @@
 module ClinicsList.Update exposing (update)
 
-import ClinicsList.Model exposing (ClinicsTable)
+import ClinicsList.Models exposing (Model)
 import ClinicsList.Messages exposing (Msg(..))
 
 
-update : Msg -> ClinicsTable -> ( ClinicsTable, Cmd Msg )
+update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         SetQuery newQuery ->

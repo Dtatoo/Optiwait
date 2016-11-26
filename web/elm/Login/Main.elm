@@ -12,9 +12,9 @@ type alias Model =
     }
 
 
-init : Model
+init : ( Model, Cmd Msg )
 init =
-    Model "" ""
+    (Model "" "") ! []
 
 
 type Msg

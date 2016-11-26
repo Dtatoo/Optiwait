@@ -1,11 +1,7 @@
 module Signup.View exposing (..)
 
 import Html exposing (..)
-import Signup.Model as M
-
-
-type alias Model =
-    M.Signup
+import Signup.Models exposing (Model)
 
 
 view : Model -> Html a

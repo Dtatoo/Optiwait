@@ -22,7 +22,15 @@ import "phoenix_html"
 //
 // ELM code import
 import Elm from './main';
-const elmDiv = document.querySelector('#elm-target');
-if (elmDiv) {
-   Elm.Main.embed(elmDiv);
-}
+import { initSearch } from './googlePlaces';
+
+const elmDiv = document.getElementById('elm-target');
+const app = Elm.Main.embed(elmDiv);
+
+app.ports.initPlacesSearch.subscribe(function() {
+  const container = document.getElementById('placesearch');
+
+  initSearch(container, function(name) {
+    app.ports.placeSuggestion.send(name);
+  })
+});

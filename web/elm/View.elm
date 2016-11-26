@@ -6,46 +6,41 @@ import Html as App
 import Models exposing (AppModel)
 import Messages exposing (Msg(..))
 import Routing exposing (Route(..))
-import ClinicsList.Model exposing (ClinicsTable)
-import ClinicsList.View
+import ClinicsList.View as ClinicsList
 import Login.Main as Login
-import Signup.Main as Signup
+import Signup.View as Signup
 import AddClinic.Main as AddClinic
 
 
 view : AppModel -> Html Msg
 view model =
     div []
-        [ page model ]
+        [ homePageView
+        , page model
+        ]
 
 
 page : AppModel -> Html Msg
 page model =
     case model.currentPage of
         Just HomeRoute ->
-            homePageView model
+            App.map ClinicsListMsg (ClinicsList.view model.clinicsList)
 
         Just LoginRoute ->
-            App.map LoginMsg (Login.view model.loginPage)
+            App.map LoginMsg (Login.view model.login)
 
         Just SignupRoute ->
-            App.map SignupMsg (Signup.view)
+            App.map SignupMsg (Signup.view model.signup)
 
         Just AddClinicRoute ->
-            App.map AddClinicMsg (AddClinic.view)
+            App.map AddClinicMsg (AddClinic.view model.addClinic)
 
         _ ->
             text "ERROR PAGE"
 
 
-clinicsTable : ClinicsTable -> Html Msg
-clinicsTable model =
-    App.map ClinicsListMsg (ClinicsList.View.view model)
-
-
-homePageView : AppModel -> Html Msg
-homePageView model =
+homePageView : Html Msg
+homePageView =
     div []
         [ img [ src "/images/optiwait_dark.png", alt "Optiwait logo" ] []
-        , clinicsTable model.clinicsTable
         ]

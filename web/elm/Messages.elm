@@ -3,8 +3,8 @@ module Messages exposing (..)
 import Navigation
 import ClinicsList.Messages as ClinicsList
 import Login.Main as Login
-import Signup.Main as Signup
-import AddClinic.Main as AddClinic
+import Signup.Messages as Signup
+import AddClinic.Messages as AddClinic
 
 
 type Msg

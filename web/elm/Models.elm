@@ -1,35 +1,56 @@
-module Models exposing (..)
+module Models exposing (AppModel, init)
 
 import Navigation
 import UrlParser exposing (parseHash)
 import Routing exposing (Route, route)
-import ClinicsList.Model exposing (ClinicsTable, init)
+import ClinicsList.Models as ClinicsList
 import Messages exposing (Msg(..))
 import Login.Main as Login
-import Signup.Main as Signup
-import AddClinic.Main as AddClinic
+import Signup.Models as Signup
+import AddClinic.Models as AddClinic
 
 
 type alias AppModel =
     { currentPage : Maybe Route
     , history : List (Maybe Route)
-    , clinicsTable : ClinicsTable
-    , loginPage : Login.Model
-    , signupPage : Signup.Model
-    , addClinicPage : AddClinic.Model
+    , clinicsList : ClinicsList.Model
+    , login : Login.Model
+    , signup : Signup.Model
+    , addClinic : AddClinic.Model
     }
 
 
-init : Navigation.Location -> ClinicsTable -> AppModel
-init location clinicsTable =
+init : Navigation.Location -> ( AppModel, Cmd Msg )
+init location =
     let
+        -- Routing
         currentRouter =
             parseHash route location
+
+        -- Pages Models + Cmds initializations
+        ( clinicsListInit, clinicsTableCmds ) =
+            ClinicsList.init
+
+        ( loginInit, loginCmds ) =
+            Login.init
+
+        ( signupInit, signupCmds ) =
+            Signup.init
+
+        ( addClinicInit, addClinicCmds ) =
+            AddClinic.init
     in
-        { clinicsTable = clinicsTable
+        { currentPage = currentRouter
         , history = [ currentRouter ]
-        , currentPage = currentRouter
-        , loginPage = Login.init
-        , signupPage = Signup.init
-        , addClinicPage = AddClinic.init
+        , clinicsList = clinicsListInit
+        , login = loginInit
+        , signup = signupInit
+        , addClinic = addClinicInit
         }
+            ! [ Cmd.batch
+                    [ Cmd.map ClinicsListMsg clinicsTableCmds
+                    , Cmd.map LoginMsg loginCmds
+                    , Cmd.map SignupMsg signupCmds
+                    , Cmd.map AddClinicMsg addClinicCmds
+                    ]
+              ]

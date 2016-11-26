@@ -3,39 +3,29 @@ module AddClinic.Main exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (id)
 import Navigation
+import AddClinic.Models exposing (Model)
+import AddClinic.Messages exposing (Msg(..))
+import AddClinic.AddressForm exposing (initPlacesSearch, placeSuggestion)
 
 
---port searchQuery : (String -> msg) -> Sub msg
-
-
-type alias Model =
-    { query : String
-    , name : String
-    , placeId : String
-    }
-
-
-init : Model
-init =
-    Model "" "" ""
-
-
-type Msg
-    = AddClinicPage
-    | Query String
+subscriptions : Model -> Sub Msg
+subscriptions model =
+    placeSuggestion Result
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         AddClinicPage ->
-            ( model, Navigation.newUrl ("addclinic") )
+            ( model, Navigation.newUrl ("clinic") )
 
-        Query searchTerm ->
-            ( { model | query = searchTerm }, Cmd.none )
+        Result placeName ->
+            ( { model | name = placeName }, Cmd.none )
 
 
-view : Html Msg
-view =
+view : Model -> Html Msg
+view { name } =
     div []
-        [ input [ id "search-box" ] [] ]
+        [ div [ id "placesearch" ] [ text "Something should be here...." ]
+        , div [] [ text name ]
+        ]

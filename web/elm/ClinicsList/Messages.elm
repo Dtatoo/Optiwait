@@ -1,4 +1,4 @@
-module ClinicsList.Messages exposing (..)
+module ClinicsList.Messages exposing (Msg(..))
 
 import Table
 
