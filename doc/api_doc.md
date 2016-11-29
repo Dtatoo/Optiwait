@@ -12,14 +12,38 @@
 __Edit__ : any PUT-like calls  
 ___Base___:  /api/v1  
 
-__users__  
+## __users__  
 POST /users -- creates new user  
+```
 {
     "user" : {
         email: "",
         password: ""
     }
 }
+
+### Response
+```
+Success (201)  
+```
+SUCCESS
+```
+Fail (422)  
+```
+{
+  "errors": {
+    "password": [
+      "should be at least 5 character(s)"
+    ],
+    "email": [
+      "has invalid format"
+    ]
+  }
+}
+```
+
+
+
 
 __login__  
 POST /login -- authentication and return JWT user can use  
