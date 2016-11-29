@@ -33,7 +33,7 @@ defmodule Optiwait.UserControllerTest do
 
   test "creates and renders resource when data is valid", %{conn: conn} do
     conn = post conn, user_path(conn, :create), user: @valid_attrs
-    assert json_response(conn, 201)["data"]["id"]
+    assert json_response(conn, 201)
     assert Repo.get_by(User, @valid_search_attrs)
   end
 

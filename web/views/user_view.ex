@@ -14,4 +14,11 @@ defmodule Optiwait.UserView do
       email: user.email,
       is_admin: user.is_admin}
   end
+
+  @doc """
+  success.json is sent when user is successfully created
+  """
+  def render("success.json", %{}) do
+    "SUCCESS"
+  end
 end
