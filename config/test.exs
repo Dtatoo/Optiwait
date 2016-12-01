@@ -12,9 +12,9 @@ config :logger, level: :warn
 # Configure your database
 config :optiwait, Optiwait.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: "optiwait",
+  password: "optiwait",
   database: "optiwait_dev_test",
-  hostname: "192.168.99.100",
-  port: "32771",
+  hostname: "localhost",
+  port: "15432",
   pool: Ecto.Adapters.SQL.Sandbox

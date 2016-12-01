@@ -36,9 +36,9 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :optiwait, Optiwait.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: "optiwait",
+  password: "optiwait",
   database: "optiwait_dev",
-  hostname: "192.168.99.100",
-  port: "32771",
+  hostname: "localhost",
+  port: "15432",
   pool_size: 10
