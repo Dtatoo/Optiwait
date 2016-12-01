@@ -29,8 +29,13 @@ const app = Elm.Main.embed(elmDiv);
 
 app.ports.initPlacesSearch.subscribe(function() {
   const container = document.getElementById('placesearch');
+  if(container == undefined ){
+    console.log("Google Place Not loaded")
+  }
+  else {
+    initSearch(container, function(name) {
+      app.ports.placeSuggestion.send(name);
+    })
+  }
 
-  initSearch(container, function(name) {
-    app.ports.placeSuggestion.send(name);
-  })
 });
