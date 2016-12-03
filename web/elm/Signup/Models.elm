@@ -1,12 +1,13 @@
 module Signup.Models exposing (..)
 
+import Http
 import Signup.Messages exposing (Msg)
 
 
 type alias Model =
     { email : String
     , password : String
-    , success : Maybe Bool
+    , error : Maybe Http.Error
     }
 
 

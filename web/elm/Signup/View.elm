@@ -2,6 +2,8 @@ module Signup.View exposing (..)
 
 import Html exposing (..)
 import Html.Events exposing (onInput, onClick)
+import Navigation
+import Utils
 import Signup.Models exposing (Model)
 import Signup.Messages exposing (Msg(..))
 
@@ -19,18 +21,15 @@ view model =
             , input [] []
             ]
         , button [ onClick Signup ] [ text "Signup" ]
-        , result model
+        , error model
         ]
 
 
-result : Model -> Html Msg
-result model =
-    case model.success of
-        Just True ->
-            h1 [] [ text "User Created" ]
-
-        Just False ->
-            h1 [] [ text "User NOTTTT created" ]
+error : Model -> Html Msg
+error model =
+    case model.error of
+        Just errorMessages ->
+            h1 [] [ text (Utils.httpErrorHandler errorMessages) ]
 
         Nothing ->
             h1 [] []

@@ -1,5 +1,6 @@
 module Signup.Update exposing (..)
 
+import Utils
 import Signup.Models exposing (Model, UserCredentials)
 import Signup.Messages exposing (Msg(..))
 import Navigation
@@ -27,10 +28,10 @@ update msg model =
                 ( model, userSignup credentials )
 
         NewUser (Ok message) ->
-            ({ model | success = Just True }) ! []
+            ( model, Navigation.newUrl "#" )
 
-        NewUser (Err _) ->
-            ({ model | success = Just False }) ! []
+        NewUser (Err error) ->
+            ({ model | error = Just error }) ! []
 
 
 userSignup : UserCredentials -> Cmd Msg
