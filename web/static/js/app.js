@@ -21,7 +21,7 @@ import "phoenix_html"
 // import socket from "./socket"
 //
 // ELM code import
-import Elm from './main';
+import Elm from '../../elm/Main';
 import { initSearch } from './googlePlaces';
 
 const elmDiv = document.getElementById('elm-target');
