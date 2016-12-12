@@ -1,1 +1,18 @@
 /* This file is for your main application css. */
+table {
+	width:100%;
+	background:#3B6B25;
+}
+
+table:hover {
+	background:#558C3B;
+}
+
+.listheader table:hover {
+	background:#3B6B25;
+}
+
+.container .inner table ol li {
+	font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	color:#fff;
+}
