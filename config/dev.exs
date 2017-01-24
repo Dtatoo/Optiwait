@@ -35,8 +35,8 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :optiwait, Optiwait.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "optiwait",
-  password: "optiwait",
+  username: "graphql",
+  password: "graphql",
   database: "optiwait_dev",
   hostname: "localhost",
   port: "15432",
