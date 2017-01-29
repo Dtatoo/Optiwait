@@ -1,6 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 
 function join(dest) {
@@ -8,14 +9,10 @@ function join(dest) {
 }
 
 const elmSource = __dirname + "/web/elm";
-const cssMain = join('web/static/css/app.css');
-const elmMain = join('web/elm/Main.elm');
 const javascriptMain = join('web/static/js/app.js');
 
 const config = module.exports = {
   entry: [
-    cssMain,
-    elmMain,
     javascriptMain,
   ],
   output: {
@@ -33,23 +30,25 @@ const config = module.exports = {
       {
         test: /\.js/,
         exclude: /node_modules/,
-        loader: "babel-loader",
+        include: join('web/static/js'),
+        loader: 'babel-loader',
       },
       {
         test: /\.css/,
-        exclude: /node_modules/,
+        include: join('web/static/css'),
         loader: ExtractTextPlugin.extract({
           fallbackLoader: 'style-loader',
           loader: [
             'css-loader?modules&importLoaders=1',
-            'postcss-loader'
+            'postcss-loader',
           ]
         })
-      }
+      },
     ]
   },
   devtool: 'source-map',
   plugins: [
-    new ExtractTextPlugin( {filename: 'css/app.css', allChunks: true, disable: false } )
+    new ExtractTextPlugin( {filename: 'css/app.css', allChunks: true, disable: false } ),
+    new CopyWebpackPlugin( [{from: join('web/static/assets'), to: join('priv/static')}], {debug: 'debug'} )
   ]
 }

@@ -39,8 +39,39 @@ page model =
             text "ERROR PAGE"
 
 
+menuBar : Html Msg
+menuBar =
+    div [ class "nav" ]
+        [ ul []
+            [ li [ class "home" ] [ a [] [ text "Home" ] ]
+            , li [ class "about" ] [ a [] [ text "About" ] ]
+            , li [ class "Login" ] [ a [] [ text "Login" ] ]
+            ]
+        ]
+
+
+menuBar2 : Html Msg
+menuBar2 =
+    nav [ class "nav" ]
+        [ div [ class "container" ]
+            [ div [ class "nav-left" ]
+                [ a [ class "nav-item" ]
+                    [ img [ src "/images/phoenix.png" ] [] ]
+                , a [ class "nav-item is-tab is-active" ] [ text "Home" ]
+                , a [ class "nav-item is-tab" ] [ text "About" ]
+                , a [ class "nav-item is-tab" ] [ text "Login" ]
+                ]
+            ]
+        ]
+
+
+loginView : AppModel -> Html Msg
+loginView model =
+    Login.view model
+
+
 homePageView : Html Msg
 homePageView =
     div []
-        [ img [ src "/images/optiwait_dark.png", alt "Optiwait logo" ] []
+        [ menuBar2
         ]

@@ -24,7 +24,7 @@ init : Navigation.Location -> ( AppModel, Cmd Msg )
 init location =
     let
         -- Routing
-        currentRouter =
+        currentRoute =
             parseHash route location
 
         -- Pages Models + Cmds initializations
@@ -40,8 +40,8 @@ init location =
         ( addClinicInit, addClinicCmds ) =
             AddClinic.init
     in
-        { currentPage = currentRouter
-        , history = [ currentRouter ]
+        { currentPage = currentRoute
+        , history = [ currentRoute ]
         , clinicsList = clinicsListInit
         , login = loginInit
         , signup = signupInit

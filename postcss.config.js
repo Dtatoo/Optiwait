@@ -6,6 +6,7 @@ module.exports = {
     require('postcss-import')({
       path: './web/static/css',
       plugins: [
+        require('autoprefixer'),
         require('postcss-url'),
         require('postcss-cssnext'),
       ]
