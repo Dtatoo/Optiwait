@@ -65,11 +65,6 @@ menuBar2 =
         ]
 
 
-loginView : AppModel -> Html Msg
-loginView model =
-    Login.view model
-
-
 homePageView : Html Msg
 homePageView =
     div []
