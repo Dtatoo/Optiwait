@@ -21,6 +21,7 @@ defmodule Optiwait.Clinic do
     struct
     |> cast(params, [:name, :about])
     |> validate_required([:name])
+    |> add_hours_and_location(params)
   end
 
   @doc """
@@ -33,6 +34,19 @@ defmodule Optiwait.Clinic do
 
   def validate_location(location) do
     Location.changeset(%Location{}, location)
+  end
+
+  def add_hours_and_location(changeset, params) do
+    %{ "hours" => hour_params,
+    "location" => location_params
+    } = params
+
+    hours = validate_hours hour_params
+    location = validate_location location_params
+
+    changeset
+    |> put_assoc(:hours, hours)
+    |> put_assoc(:location, location)
   end
 
 end

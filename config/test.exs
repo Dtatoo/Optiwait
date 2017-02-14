@@ -12,8 +12,8 @@ config :logger, level: :warn
 # Configure your database
 config :optiwait, Optiwait.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "optiwait",
-  password: "optiwait",
+  username: "graphql",
+  password: "graphql",
   database: "optiwait_dev_test",
   hostname: "localhost",
   port: "15432",

@@ -61,8 +61,7 @@ defmodule Optiwait.ClinicControllerTest do
 
   test "creates and renders resource when data is valid", %{conn: conn} do
     conn = post conn, clinic_path(conn, :create), clinic: @valid_attrs
-    assert json_response(conn, 201)["data"]["id"]
-    assert Repo.get_by(Clinic, @valid_attrs)
+    assert json_response(conn, 201)["data"]["id"] == Repo.get_by(Clinic, @valid_attrs)
   end
 
   test "does not create resource and renders errors when data is invalid", %{conn: conn} do
@@ -73,13 +72,15 @@ defmodule Optiwait.ClinicControllerTest do
   test "updates and renders chosen resource when data is valid", %{conn: conn} do
     clinic = Repo.insert! %Clinic{}
     conn = put conn, clinic_path(conn, :update, clinic), clinic: @valid_attrs
-    assert json_response(conn, 200)["data"]["id"]
+    assert json_response(conn, 200)
+    # ["data"]["id"]
     #assert Repo.get_by(Clinic, @valid_attrs)
   end
 
   test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
     clinic = Repo.insert! %Clinic{}
     conn = put conn, clinic_path(conn, :update, clinic), clinic: @invalid_attrs
+    IO.puts(conn)
     assert json_response(conn, 422)["errors"] != %{}
   end
 

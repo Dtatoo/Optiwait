@@ -16,21 +16,11 @@ defmodule Optiwait.ClinicController do
   end
 
   def create(conn, params) do
-    %{"clinic" => clinic_params,
-    "hours" => hour_params,
-    "location" => location_params
-    } = params
-
     current_user = Guardian.Plug.current_resource conn
-    hours = Clinic.validate_hours hour_params
-    location = Clinic.validate_location location_params
-
     changeset =
       current_user
       |> build_assoc(:clinics)
-      |> Clinic.changeset(clinic_params)
-      |> Ecto.Changeset.put_assoc(:hours, hours)
-      |> Ecto.Changeset.put_assoc(:location, location)
+      |> Clinic.changeset(params)
 
     case Repo.insert(changeset) do
       {:ok, clinic} ->
@@ -54,24 +44,15 @@ defmodule Optiwait.ClinicController do
   end
 
   def update(conn, params) do
-    %{"id" => id,
-    "clinic" => clinic_params,
-    "hours" => hour_params,
-    "location" => location_params
-    } = params
+    %{"id" => id} = params
 
     clinic =
       Repo.get!(Clinic, id)
       |> Repo.preload(:hours)
       |> Repo.preload(:location)
-    hours = Clinic.validate_hours hour_params
-    location = Clinic.validate_location location_params
 
-    #changeset = Clinic.changeset(clinic, clinic_params)
     changeset =
-      Clinic.changeset(clinic, clinic_params)
-      |> Ecto.Changeset.put_assoc(:hours, hours)
-      |> Ecto.Changeset.put_assoc(:location, location)
+      Clinic.changeset(clinic, params)
 
     case Repo.update(changeset) do
       {:ok, clinic} ->
