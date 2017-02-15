@@ -10,12 +10,13 @@ import ClinicsList.View as ClinicsList
 import Login.Main as Login
 import Signup.View as Signup
 import AddClinic.Main as AddClinic
+import MenuBar exposing (menubar)
 
 
 view : AppModel -> Html Msg
 view model =
     div []
-        [ homePageView
+        [ homePageView model
         , page model
         ]
 
@@ -39,34 +40,8 @@ page model =
             text "ERROR PAGE"
 
 
-menuBar : Html Msg
-menuBar =
-    div [ class "nav" ]
-        [ ul []
-            [ li [ class "home" ] [ a [] [ text "Home" ] ]
-            , li [ class "about" ] [ a [] [ text "About" ] ]
-            , li [ class "Login" ] [ a [] [ text "Login" ] ]
-            ]
-        ]
-
-
-menuBar2 : Html Msg
-menuBar2 =
-    nav [ class "nav" ]
-        [ div [ class "container" ]
-            [ div [ class "nav-left" ]
-                [ a [ class "nav-item" ]
-                    [ img [ src "/images/phoenix.png" ] [] ]
-                , a [ class "nav-item is-tab is-active" ] [ text "Home" ]
-                , a [ class "nav-item is-tab" ] [ text "About" ]
-                , a [ class "nav-item is-tab" ] [ text "Login" ]
-                ]
-            ]
-        ]
-
-
-homePageView : Html Msg
-homePageView =
+homePageView : AppModel -> Html Msg
+homePageView model =
     div []
-        [ menuBar2
+        [ menubar model
         ]

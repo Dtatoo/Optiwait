@@ -21,6 +21,7 @@ config :optiwait, Optiwait.Endpoint,
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
       ~r{priv/gettext/.*(po)$},
       ~r{web/views/.*(ex)$},
+      ~r{web/elm/.*(elm)$},
       ~r{web/templates/.*(eex)$}
     ]
   ]
