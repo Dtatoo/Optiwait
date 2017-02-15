@@ -1,10 +1,9 @@
 module Update exposing (..)
 
-import UrlParser exposing (parseHash)
 import Navigation exposing (newUrl)
 import Models exposing (AppModel)
 import Messages exposing (Msg(..))
-import Routing exposing (route)
+import Routing exposing (getRoute)
 import ClinicsList.Update as ClinicsList
 import Login.Main as Login
 import Signup.Update as Signup
@@ -19,8 +18,8 @@ update msg model =
 
         UrlChange location ->
             ( { model
-                | history = parseHash route location :: model.history
-                , currentPage = parseHash route location
+                | history = getRoute location :: model.history
+                , currentPage = getRoute location
               }
             , Cmd.none
             )

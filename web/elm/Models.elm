@@ -1,8 +1,7 @@
 module Models exposing (AppModel, init)
 
 import Navigation
-import UrlParser exposing (parseHash)
-import Routing exposing (Route, route)
+import Routing exposing (Route, route, getRoute)
 import ClinicsList.Models as ClinicsList
 import Messages exposing (Msg(..))
 import Login.Main as Login
@@ -11,8 +10,8 @@ import AddClinic.Models as AddClinic
 
 
 type alias AppModel =
-    { currentPage : Maybe Route
-    , history : List (Maybe Route)
+    { currentPage : Route
+    , history : List Route
     , clinicsList : ClinicsList.Model
     , login : Login.Model
     , signup : Signup.Model
@@ -25,7 +24,7 @@ init location =
     let
         -- Routing
         currentRoute =
-            parseHash route location
+            getRoute location
 
         -- Pages Models + Cmds initializations
         ( clinicsListInit, clinicsTableCmds ) =

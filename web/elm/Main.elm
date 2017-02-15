@@ -4,7 +4,7 @@ import Models exposing (AppModel, init)
 import View exposing (view)
 import Update exposing (update)
 import Messages exposing (Msg(..))
-import Navigation
+import Navigation exposing (program)
 import AddClinic.Main as AddClinic
 
 
@@ -19,7 +19,7 @@ subscriptions { addClinic } =
 
 main : Program Never AppModel Msg
 main =
-    Navigation.program UrlChange
+    program UrlChange
         { init = init
         , view = view
         , update = update

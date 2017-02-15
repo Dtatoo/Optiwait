@@ -23,16 +23,16 @@ view model =
 page : AppModel -> Html Msg
 page model =
     case model.currentPage of
-        Just HomeRoute ->
+        HomeRoute ->
             App.map ClinicsListMsg (ClinicsList.view model.clinicsList)
 
-        Just LoginRoute ->
+        LoginRoute ->
             App.map LoginMsg (Login.view model.login)
 
-        Just SignupRoute ->
+        SignupRoute ->
             App.map SignupMsg (Signup.view model.signup)
 
-        Just AddClinicRoute ->
+        AddClinicRoute ->
             App.map AddClinicMsg (AddClinic.view model.addClinic)
 
         _ ->
