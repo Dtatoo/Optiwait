@@ -8,12 +8,10 @@ function join(dest) {
 
 const elmSource = join('web/elm');
 const javascriptMain = join('web/static/js/app.js');
-const css = join('web/static/css/app.css');
 
 module.exports = {
 	entry: [
-		javascriptMain,
-		css
+		javascriptMain
 	],
 	output: {
 		path: join('priv/static'),
@@ -38,7 +36,7 @@ module.exports = {
 				loader: ExtractTextPlugin.extract({
 					fallback: 'style-loader',
 					loader: [
-						'css-loader?modules&importLoaders=1',
+						'css-loader?importLoaders=1',
 						'postcss-loader'
 					]
 				})

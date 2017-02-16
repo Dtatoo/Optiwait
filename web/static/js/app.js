@@ -23,6 +23,7 @@ import "phoenix_html"
 // ELM code import
 import Elm from '../../elm/Main.elm';
 import { initSearch } from './googlePlaces';
+import '../css/app.css';
 
 
 const elmDiv = document.getElementById('elm-target');
