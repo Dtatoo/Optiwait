@@ -31,8 +31,8 @@ module.exports = {
         loader: 'babel-loader'
       },
       {
-        test: /\.(eot|ttf|woff|woff2|svg)$/,
-        loader: 'file-loader'
+        test: /\.(png|woff|woff2|eot|ttf|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url-loader?limit=100000'
       },
       {
         test: /\.css/,
