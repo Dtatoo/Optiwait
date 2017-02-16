@@ -1,3 +1,4 @@
+@import '~font-awesome/css/font-awesome.min.css';
 /* ----------- iPhone 5 and 5S ----------- */
 
 /* Portrait and Landscape */
@@ -15,8 +16,10 @@
     and (orientation: portrait);
 
 @media (--iphone5-portrait) {
-    .main-nav {
+    .main-nav-list {
+        list-style-type: none;
         display: flex;
+        justify-content: space-between;
     }
 }
 

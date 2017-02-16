@@ -8,8 +8,8 @@ import Html.Attributes exposing (class, id)
 
 menubar : AppModel -> Html Msg
 menubar model =
-    nav [ class "main-nav", id "main-nav" ]
-        [ ul [ id "main-nav-list" ]
+    nav [ class "main-nav" ]
+        [ ul [ class "main-nav-list" ]
             [ li [] [ a [] [ text "Home" ] ]
             , li [] [ a [] [ text "About" ] ]
             , li [] [ a [] [ text "Signup/Login" ] ]
