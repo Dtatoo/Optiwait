@@ -1,4 +1,26 @@
+@import './normalize.css';
 @import '~font-awesome/css/font-awesome.min.css';
+
+/* general case */
+:root {
+    /* main colors */
+    --black: #212121;
+    --red: #C75142;
+    --white: #FFFFFF;
+    --green: #8FAA9D;
+    --grey: #D4D4D4;
+}
+
+/* keep the menu burger item hidden when it isn't mobile view */
+.main-nav-list {
+    list-style-type: none;
+}
+
+.main-nav-list .icon {
+    display: none;
+}
+
+
 /* ----------- iPhone 5 and 5S ----------- */
 
 /* Portrait and Landscape */
@@ -16,10 +38,31 @@
     and (orientation: portrait);
 
 @media (--iphone5-portrait) {
-    .main-nav-list {
-        list-style-type: none;
+
+    .main-nav {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start;
+        line-height: 0;
+        color: var(--black);
+        background-color: var(--red);
+
+        & .mobile-menu {
+            padding: 1rem;
+        }
+
+        & .main-nav-list {
+            list-style-type: none;
+            padding: 1rem;
+        }
+
+        & .mobile-menu {
+            font-size: 1.5rem;
+            align-self: center;
+        }
+
+        & .mobile-hidden {
+            display: none;
+        }
     }
 }
 

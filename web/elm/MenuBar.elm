@@ -9,11 +9,11 @@ import Html.Attributes exposing (class, id, attribute)
 menubar : AppModel -> Html Msg
 menubar model =
     nav [ class "main-nav" ]
-        [ ul [ class "main-nav-list" ]
-            [ li [] [ a [ class "fa fa-bars", ariaHidden "true" ] [] ]
-            , li [] [ a [] [ text "Home" ] ]
-            , li [] [ a [] [ text "About" ] ]
-            , li [] [ a [] [ text "Signup/Login" ] ]
+        [ div [ class "mobile-menu fa fa-bars", ariaHidden "true" ] []
+        , ul [ class "main-nav-list" ]
+            [ li [] [ a [] [ text "Optiwait" ] ]
+            , li [ class "mobile-hidden" ] [ a [] [ text "About" ] ]
+            , li [ class "mobile-hidden" ] [ a [] [ text "Signup/Login" ] ]
             ]
         ]
 

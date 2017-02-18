@@ -3,6 +3,8 @@
 
 module.exports = {
   plugins: [
-    require('postcss-cssnext'),
+    require('immutable-css'),
+    require('postcss-reporter'),
+    require('postcss-cssnext')
   ]
-}
+};
