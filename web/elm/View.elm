@@ -42,5 +42,5 @@ page model =
 homePageView : AppModel -> Html Msg
 homePageView model =
     div []
-        [ menubar model
+        [ App.map MenuBarMsg (menubar model.menu)
         ]
