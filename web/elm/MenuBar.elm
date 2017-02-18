@@ -2,7 +2,7 @@ module MenuBar exposing (menubar)
 
 import Models exposing (AppModel)
 import Messages exposing (Msg)
-import Html exposing (Html, Attribute, text, nav, li, ul, a, div, span)
+import Html exposing (Html, Attribute, text, nav, li, ul, a, div)
 import Html.Attributes exposing (class, id, attribute)
 
 
