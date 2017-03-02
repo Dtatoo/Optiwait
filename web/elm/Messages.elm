@@ -5,7 +5,6 @@ import ClinicsList.Messages as ClinicsList
 import Login.Main as Login
 import Signup.Messages as Signup
 import AddClinic.Messages as AddClinic
-import MenuBar
 
 
 type Msg
@@ -15,4 +14,3 @@ type Msg
     | LoginMsg Login.Msg
     | SignupMsg Signup.Msg
     | AddClinicMsg AddClinic.Msg
-    | MenuBarMsg MenuBar.Msg

@@ -41,27 +41,29 @@
 
     .main-nav {
         display: flex;
-        justify-content: flex-start;
-        line-height: 0;
+		padding: 1.5rem;
+		align-items: center;
+		justify-content: space-between;
+
         color: var(--black);
         background-color: var(--red);
 
-        & .mobile-menu {
-            padding: 1rem;
+        & .mobile-nav-list {
+			display: flex;
+			justify-content: space-between;
+            list-style-type: none;
+			margin: 0;
         }
 
-        & .main-nav-list {
-            list-style-type: none;
-            padding: 1rem;
-        }
+		& .mobile-menu-item {
+			font-size: 0.8rem;
+			padding: 0.5rem;
+		}
 
         & .mobile-menu {
             font-size: 1.5rem;
             align-self: center;
-        }
-
-        & .mobile-hidden {
-            display: none;
+			transition: all 0.5s ease;
         }
     }
 }

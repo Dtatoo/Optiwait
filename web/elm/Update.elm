@@ -8,7 +8,6 @@ import ClinicsList.Update as ClinicsList
 import Login.Main as Login
 import Signup.Update as Signup
 import AddClinic.Main as AddClinic
-import MenuBar
 
 
 update : Msg -> AppModel -> ( AppModel, Cmd Msg )
@@ -24,13 +23,6 @@ update msg model =
               }
             , Cmd.none
             )
-
-        MenuBarMsg subMsg ->
-            let
-                ( subModel, cmd ) =
-                    MenuBar.update subMsg model.menu
-            in
-                ( { model | menu = subModel }, Cmd.map MenuBarMsg cmd )
 
         ClinicsListMsg subMsg ->
             let

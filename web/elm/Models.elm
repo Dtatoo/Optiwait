@@ -7,13 +7,11 @@ import Messages exposing (Msg(..))
 import Login.Main as Login
 import Signup.Models as Signup
 import AddClinic.Models as AddClinic
-import MenuBar
 
 
 type alias AppModel =
     { currentPage : Route
     , history : List Route
-    , menu : MenuBar.Model
     , clinicsList : ClinicsList.Model
     , login : Login.Model
     , signup : Signup.Model
@@ -27,10 +25,6 @@ init location =
         -- Routing
         currentRoute =
             getRoute location
-
-        -- MenuBar
-        ( menuInit, menuCmds ) =
-            MenuBar.init
 
         -- Pages Models + Cmds initializations
         ( clinicsListInit, clinicsTableCmds ) =
@@ -47,15 +41,13 @@ init location =
     in
         { currentPage = currentRoute
         , history = [ currentRoute ]
-        , menu = menuInit
         , clinicsList = clinicsListInit
         , login = loginInit
         , signup = signupInit
         , addClinic = addClinicInit
         }
             ! [ Cmd.batch
-                    [ Cmd.map MenuBarMsg menuCmds
-                    , Cmd.map ClinicsListMsg clinicsTableCmds
+                    [ Cmd.map ClinicsListMsg clinicsTableCmds
                     , Cmd.map LoginMsg loginCmds
                     , Cmd.map SignupMsg signupCmds
                     , Cmd.map AddClinicMsg addClinicCmds

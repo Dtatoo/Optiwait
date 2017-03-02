@@ -15,7 +15,7 @@ import MenuBar exposing (menubar)
 view : AppModel -> Html Msg
 view model =
     div []
-        [ homePageView model
+        [ homePageView
         , page model
         ]
 
@@ -39,8 +39,8 @@ page model =
             text "ERROR PAGE"
 
 
-homePageView : AppModel -> Html Msg
-homePageView model =
+homePageView : Html Msg
+homePageView =
     div []
-        [ App.map MenuBarMsg (menubar model.menu)
+        [ menubar
         ]
