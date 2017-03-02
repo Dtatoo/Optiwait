@@ -16,8 +16,14 @@ view : AppModel -> Html Msg
 view model =
     div []
         [ homePageView
+        , loginPage model
         , page model
         ]
+
+
+loginPage : AppModel -> Html Msg
+loginPage model =
+    Html.map LoginMsg (Login.view model.login)
 
 
 page : AppModel -> Html Msg
