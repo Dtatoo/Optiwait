@@ -92,8 +92,8 @@
         flex-grow: 1;
         flex-basis: 0;
         font-weight: 600;
-        border-bottom-style: solid;
-        border-bottom-width: 1px;
+        /* border-bottom-style: solid; */
+        /* border-bottom-width: 1px; */
         padding-left: 1rem;
         padding-right: 1rem;
         padding-top: 0.7rem;
@@ -107,6 +107,10 @@
         flex-basis: 0;
     }
 
+    & tr:nth-child(odd) {
+        background-color: var(--grey);
+    }
+
     & tbody {
         line-height: 1.5;
     }
@@ -117,10 +121,10 @@
         flex-basis: 0;
         padding: 1rem;
 
-        border-bottom-style: solid;
-        border-bottom-width: 1px;
+        /* border-bottom-style: solid; */
+        /* border-bottom-width: 1px; */
 
-        border-color: var(--black);
+        /* border-color: var(--black); */
     }
 }
 
