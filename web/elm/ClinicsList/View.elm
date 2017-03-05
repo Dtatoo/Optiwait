@@ -1,7 +1,7 @@
 module ClinicsList.View exposing (view)
 
 import Html exposing (..)
-import Html.Attributes exposing (placeholder, class, src, alt)
+import Html.Attributes exposing (placeholder, class, id, src, alt)
 import Html.Events exposing (onInput)
 import String
 import Table exposing (defaultCustomizations)
