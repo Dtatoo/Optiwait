@@ -37,7 +37,7 @@ advancedConfig =
 
 tableCssAttrs : List (Attribute Msg)
 tableCssAttrs =
-    [ class "main-table" ]
+    [ id "main-table" ]
 
 
 view : Model -> Html Msg
@@ -50,7 +50,8 @@ view { clinics, tableState, query } =
             List.filter (String.contains lowerQuery << String.toLower << .name) clinics
     in
         div []
-            [ h1 [] [ text "Clinics" ]
-            , input [ class "full-width w-background", placeholder "Search By Name", onInput SetQuery ] []
+            [ div [ class "padding flex-center" ]
+                [ input [ class "full-width padding", placeholder "Search Clinics By Name", onInput SetQuery ] []
+                ]
             , Table.view advancedConfig tableState acceptableNames
             ]
