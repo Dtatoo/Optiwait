@@ -2,7 +2,7 @@ module AddClinic.Main exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (id)
-import Navigation
+import Navigation exposing (newUrl)
 import AddClinic.Models exposing (Model)
 import AddClinic.Messages exposing (Msg(..))
 import AddClinic.AddressForm exposing (initPlacesSearch, placeSuggestion)
@@ -17,7 +17,7 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         AddClinicPage ->
-            ( model, Navigation.newUrl ("clinic") )
+            ( model, newUrl ("clinic") )
 
         Result placeName ->
             ( { model | name = placeName }, Cmd.none )

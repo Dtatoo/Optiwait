@@ -1,25 +1,29 @@
 module MenuBar exposing (menubar)
 
 import Html exposing (Html, Attribute, text, nav, li, ul, a, div)
-import Html.Attributes exposing (class, classList, id, attribute)
-import Models exposing (AppModel)
+import Html.Attributes exposing (id, class, classList, id, href, attribute)
 import Messages exposing (Msg)
+
+
+type alias Href =
+    String
+
+
+type alias Text =
+    String
 
 
 menubar : Html Msg
 menubar =
-    nav [ class "main-nav" ]
-        [ div
-            [ ariaHidden "true" ]
-            []
-        , div [] [ a [] [ text "Optiwait" ] ]
-        , ul [ class "mobile-nav-list" ]
-            [ li [ class "mobile-menu-item" ] [ a [] [ text "About" ] ]
-            , li [ class "mobile-menu-item" ] [ a [] [ text "Signup/Login" ] ]
+    nav [ id "main-nav", class "padding-15" ]
+        [ div [] [ a [ href "/#" ] [ text "Optiwait" ] ]
+        , ul [ id "mobile-nav-list" ]
+            [ listItem "" "About"
+            , listItem "/#/login" "Login"
             ]
         ]
 
 
-ariaHidden : String -> Attribute msg
-ariaHidden val =
-    attribute "aria-hidden" val
+listItem : Href -> Text -> Html msg
+listItem hrefLink content =
+    li [ class "padding-05" ] [ a [ href hrefLink ] [ text content ] ]
