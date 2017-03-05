@@ -1,6 +1,7 @@
 module View exposing (view)
 
 import Html exposing (..)
+import Html.Attributes exposing (class)
 import Html as App
 import Models exposing (AppModel)
 import Messages exposing (Msg(..))
@@ -14,7 +15,7 @@ import MenuBar exposing (menubar)
 
 view : AppModel -> Html Msg
 view model =
-    div []
+    div [ class "w-background" ]
         [ homePageView
         , page model
         ]

@@ -37,7 +37,7 @@ advancedConfig =
 
 tableCssAttrs : List (Attribute Msg)
 tableCssAttrs =
-    [ class "c-table" ]
+    [ class "main-table" ]
 
 
 view : Model -> Html Msg
@@ -51,6 +51,6 @@ view { clinics, tableState, query } =
     in
         div []
             [ h1 [] [ text "Clinics" ]
-            , input [ placeholder "Search By Name", onInput SetQuery ] []
+            , input [ class "full-width w-background", placeholder "Search By Name", onInput SetQuery ] []
             , Table.view advancedConfig tableState acceptableNames
             ]

@@ -57,5 +57,5 @@ clinicInfos =
     , ClinicInfo "name7" "location1" defaultOpenAndClosingTime
     , ClinicInfo "name8" "location1" defaultOpenAndClosingTime
     , ClinicInfo "name9" "location1" defaultOpenAndClosingTime
-    , ClinicInfo "name10" "location1" defaultOpenAndClosingTime
+    , ClinicInfo "name kevin" "location1" defaultOpenAndClosingTime
     ]
