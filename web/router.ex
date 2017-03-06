@@ -36,4 +36,7 @@ defmodule Optiwait.Router do
     resources "/wait_times", WaitTimeController, except: [:new, :edit]
     resources "/locations", LocationController, except: [:new, :edit]
   end
+
+  forward "/graphql", Absinthe.Plug,
+    schema: Optiwait.Schema
 end

@@ -39,7 +39,8 @@ defmodule Optiwait.Mixfile do
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:comeonin, "~> 2.6"},
-     {:guardian, "~> 0.13"}]
+     {:guardian, "~> 0.13"},
+     {:absinthe_plug, "~> 1.2"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
