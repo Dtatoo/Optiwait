@@ -15,7 +15,7 @@ import MenuBar exposing (menubar)
 
 view : AppModel -> Html Msg
 view model =
-    div [ class "w-background" ]
+    div []
         [ homePageView
         , page model
         ]

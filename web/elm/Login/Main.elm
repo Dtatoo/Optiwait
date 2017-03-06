@@ -1,7 +1,7 @@
 module Login.Main exposing (..)
 
-import Html exposing (..)
-import Html.Attributes exposing (type_, placeholder)
+import Html exposing (Html, span, h2, div, form, input, button, label, text)
+import Html.Attributes exposing (class, type_, placeholder, name)
 import Html.Events exposing (onInput)
 import Navigation
 
@@ -9,6 +9,14 @@ import Navigation
 type alias Model =
     { email : String
     , password : String
+    }
+
+
+type alias LoginInput =
+    { event : Html.Attribute Msg
+    , inputType : String
+    , inputName : String
+    , placeHolder : String
     }
 
 
@@ -39,8 +47,58 @@ update msg model =
 view : Model -> Html Msg
 view model =
     div []
-        [ h1 [] [ text "LoginPage" ]
-        , input [ type_ "text", placeholder "email", onInput Email ] []
-        , input [ type_ "password", placeholder "password", onInput Password ] []
-        , button [] [ text "Login" ]
+        [ h2 [ class "lr-padding" ] [ text "Login" ]
+        , inputFields
         ]
+
+
+inputFields : Html Msg
+inputFields =
+    let
+        emailField =
+            loginFields
+                (LoginInput
+                    (onInput Email)
+                    "text"
+                    "email"
+                    "Email"
+                )
+
+        passwordField =
+            loginFields
+                (LoginInput
+                    (onInput Password)
+                    "password"
+                    "password"
+                    "Password"
+                )
+    in
+        form []
+            [ inputWithSpan emailField "Email"
+            , inputWithSpan passwordField "Password"
+            , div [ class "padding flex flex-center bg-grey margin" ]
+                [ button [] [ span [] [ text "Login" ] ] ]
+            ]
+
+
+type alias LabelText =
+    String
+
+
+inputWithSpan : Html Msg -> LabelText -> Html Msg
+inputWithSpan inputElement labelText =
+    span [ class "flex flex-center padding-05" ]
+        [ inputElement
+        ]
+
+
+loginFields : LoginInput -> Html Msg
+loginFields { event, inputType, inputName, placeHolder } =
+    input
+        [ type_ inputType
+        , class "padding"
+        , name inputName
+        , placeholder placeHolder
+        , event
+        ]
+        []

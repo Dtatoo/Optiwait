@@ -50,7 +50,7 @@ view { clinics, tableState, query } =
             List.filter (String.contains lowerQuery << String.toLower << .name) clinics
     in
         div []
-            [ div [ class "padding flex-center" ]
+            [ div [ class "padding flex flex-center" ]
                 [ input [ class "full-width padding", placeholder "Search Clinics By Name", onInput SetQuery ] []
                 ]
             , Table.view advancedConfig tableState acceptableNames
