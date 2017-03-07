@@ -7,7 +7,7 @@ defmodule Optiwait.Schema.Types do
   object :user do
     field :id, :id
     field :email, :string
-    field :password, :string
+    field :hashed_password, :string
     field :is_admin, :boolean
     field :clinics, list_of(:clinic)
   end
