@@ -1,43 +1,29 @@
 defmodule Optiwait.Schema do
+
+
   @moduledoc """
   Provides Schema endpoint (query/mutation) for GraphQL
   """
 
   use Absinthe.Schema
 
+  alias Optiwait.Repo
+  alias Optiwait.User
+
+  import_types Optiwait.Schema.Types
+
   @desc"""
   A User of Optiwait
   """
-  object :user do
-    field :id, :id
-    field :email, :email,
-    field :hashed_password, :string
-    field :is_admin, :boolean
-    field :clinics, list_of(:clinic)
+
+  def all(_parent, _args, _info) do
+    {:ok, Optiwait.Repo.all(User)}
   end
 
-  object :clinic do
-    field :id, :id
-    field :name, :name
-    field :hours, list_of(:hour)
-    field :location, :location
-    field :user, :user
+ query do
+  field :users, list_of(:user) do
+      resolve &all/3
   end
-
-  object :hours do
-    field :id, :id
-    field :weekday, :integer
-    field :start_hour, Ecto.Time
-    field :end_hour, Ecto.Time
-    field :closed, :boolean
-    field :clinic, :clinic
-  end
-
-  object :wait_time do
-    field :id, :id
-    field :waiting_time, :integer
-    field :clinic, :clinic
-  end
-
+ end
 
 end

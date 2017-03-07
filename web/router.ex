@@ -19,11 +19,16 @@ defmodule Optiwait.Router do
     plug Guardian.Plug.EnsureAuthenticated
   end
 
+
   scope "/", Optiwait do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+
   end
+
+  forward "/g", Absinthe.Plug, schema: Optiwait.Schema
+  forward "/graphiql", Absinthe.Plug.GraphiQL, schema: Optiwait.Schema
 
   scope "/api/v1", Optiwait do
     pipe_through [:api]
@@ -37,6 +42,4 @@ defmodule Optiwait.Router do
     resources "/locations", LocationController, except: [:new, :edit]
   end
 
-  forward "/graphql", Absinthe.Plug,
-    schema: Optiwait.Schema
 end

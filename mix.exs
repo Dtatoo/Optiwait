@@ -19,7 +19,7 @@ defmodule Optiwait.Mixfile do
   def application do
     [mod: {Optiwait, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :comeonin, :guardian]]
+                    :phoenix_ecto, :postgrex, :comeonin, :guardian, :absinthe_plug]]
   end
 
   # Specifies which paths to compile per environment.
@@ -40,6 +40,7 @@ defmodule Optiwait.Mixfile do
      {:cowboy, "~> 1.0"},
      {:comeonin, "~> 2.6"},
      {:guardian, "~> 0.13"},
+     {:absinthe, "~> 1.2"},
      {:absinthe_plug, "~> 1.2"}]
   end
 
